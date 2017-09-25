@@ -1,0 +1,8 @@
+Final Project in this mini course is to create a portfolio optimizer.
+    - first what is portfolio optimization:
+        - Portfolio Optimization: Given a set of assets and a time period, find an allocation of funds to assets that maximizes performance.
+        - Performance: We can chose from a number of metrics, including: cumulative return, volatility or risk, and risk adjusted return (which is Sharpe Ratio).
+    - You can use any criteria you like, but for this assignment we will focus on Sharpe Ratio.
+
+Lesson objectives:
+    - Learn how to use a minimizer to optimize a portfolio.

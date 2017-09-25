@@ -1,0 +1,51 @@
+look at daily portfolio values - NEED TO BE ABLE TO DO THIS
+
+cumulative return
+average daily return
+risk
+sharpe ratio
+
+
+build a function that can do this automatically.
+
+
+
+
+
+
+
+
+Daily Portfolio Value:
+
+start_val = 1000000
+sd, ed = "01-01-2009", "12-31-2011"
+symbols = ["SPY", "XOM", "GOOG", "GLD"]
+allocs = [0.4, 0.4, 0.1, 0.1]
+
+Question:
+    - How do we calculate the total vlue of the portfolio day by day?
+
+
+STEP BY STEP:
+
+1)  Start with prices dataframe.
+                     SPY       XOM      GOOG       GLD
+    2009-01-02  1.000000  1.000000  1.000000  1.000000
+    2009-01-05  0.998848  0.999866  1.020945  0.979705
+    2009-01-06  1.005530  0.983620  1.039649  0.987243
+
+2)  Normalize these prices: normed =    prices / prices[0]
+
+3)  After we normalize #1 we get a new dataframe, df_normed
+
+4)  Multiply the normed values with the allocations to each of the equities:    alloced = normed * allocs
+
+5)  After we multiply df_normed with the alloc (#4) we get a new dataframe, df_alloced
+
+6)  Multiply df_alloced with the starting value ($1m):  position_values = alloced * start_val
+
+7)  After we multiply the alloced with the starting value we get a new dataframe, df_pos_vals
+
+8)  Now that we have the value each day for the individual asset, we can calculate the total value for the portfolio each day by summing accross each day:  port-val = pos_vals.sum(axis=1)
+
+9) We now have port_val which is a df of only one column: the portfolio value each day.

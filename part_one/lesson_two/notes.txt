@@ -1,0 +1,104 @@
+Misc:
+    - date ranges
+    - multiple stocks
+    - align dates
+    - proper date order
+
+
+This lesson went over these things:
+    - create an empty dataframe (can do)
+    - Left Joining (can do)
+    - join spy data (can do)
+    - read in more stocks (can do)
+    - utility functions for reading data (can do)
+    - obtaining a slice of data (can do)
+    - slicing and plotting two stocks (can do)
+    - normalizing (CAN'T FIGURE OUT)
+
+    Create an empty dataframe:
+        import pandas as pd
+        sd, ed = "01-01-2010", "12-31-2010"
+        dates = pd.date_range(sd, ed)
+        df1 = pd.DataFrame(index=dates)
+        return df1
+
+    Left Join SPY data:
+        import pandas as pd
+        sd, ed = "01-01-2010", "12-31-2010"
+        dates = pd.date_range(sd, ed)
+        df1 = pd.DataFrame(index=dates)
+        dfSPY = pd.read_csv("{}SPY.csv".format(PATH), index_col="Date", parse_dates=True,
+                            usecols=["Date", "Adj Close"], na_values=["nan"])
+        df1 = df1.join(dfSPY, how="inner")
+        return df1
+
+    Read in more stocks to the empty df and dfSPY:
+        import pandas as pd
+        sd, ed = "01-01-2010", "12-31-2010"
+        dates = pd.date_range(sd, ed)
+        df1 = pd.DataFrame(index=dates)
+        dfSPY = pd.read_csv("{}SPY.csv".format(PATH), index_col="Date", parse_dates=True,
+                            usecols=["Date", "Adj Close"], na_values=["nan"])
+        dfSPY = dfSPY.rename(columns={"Adj Close": "SPY"})
+        df1 = df1.join(dfSPY, how="inner")
+
+        symbols = ["GOOG", "IBM", "GLD"]
+        for s in symbols:
+            df_temp = pd.read_csv("{}{}.csv".format(PATH, s), index_col="Date", parse_dates=True,
+                            usecols=["Date", "Adj Close"], na_values=["nan"])
+            df_temp = df_temp.rename(columns={"Adj Close": s})
+            df1 = df1.join(df_temp)
+        return df1
+
+    Plot Stock Data:
+        ax = df.plot(title=title, fontsize=12)
+        ax.set_xlabel("Date")
+        ax.set_ylabel("Price")
+        plt.show()
+
+    Slice data:
+        1)  On Date:
+            sd, ed = "01-01-2010", "01-31-2010"
+            dates = pd.date_range(sd, ed)
+            symbols = ["GOOG", "IBM", "GLD"]
+            df = get_data(symbols, dates)
+            return df.ix['2010-01-01':'2010-01-07']
+
+        2)  On Column:
+            sd, ed = "01-01-2010", "01-31-2010"
+            dates = pd.date_range(sd, ed)
+            symbols = ["GOOG", "IBM", "GLD"]
+            df = get_data(symbols, dates)
+            return df["GOOG"]
+
+        3) On Date and Column:
+           sd, ed = "01-01-2010", "01-31-2016"
+           dates = pd.date_range(sd, ed)
+           symbols = ["GOOG", "IBM", "GLD"]
+           df = get_data(symbols, dates)
+           print df.ix["2010-03-10":"2010-03-15", ["GOOG"]]
+
+    Normalizing:
+        def symbol_to_path...
+        def get_data()...
+        def normalize(df):
+            return df/df.ix[0, :]
+        def plot_data()...
+        def plot_selected)...
+        def test_run():
+            symbols = ['GOOG', 'IBM', 'GLD']
+            dates = pd.date_range('2010-01-01', '2010-12-31')
+            df = get_data(symbols, dates)
+            df = normalize_data(df)
+            return df, plot_selected(df, symbols, '2010-01-01', '2010-12-31')
+
+
+This lesson I learned for myself:
+
+This lesson I want to learn:
+    - return df/df.ix[0, :] - turns into a tuple
+    - look more into df.ix[start:end, columns] - the three different ways = figured out
+    - memorize the symbols_to_path() function
+    - memorize the get_data() function used in util
+    - memorize the plot_data() function
+    - memorize the plot_selected() function

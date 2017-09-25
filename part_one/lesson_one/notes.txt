@@ -1,0 +1,49 @@
+This lesson went over these things:
+    - how to open and read a csv file (can do)
+    - how to get the max close, the mean volume from a stock csv file (can do)
+    - how to select rows with panda in a csv file (can do)
+    - how to plot high prices from a stock csv file (can do)
+    - how to plot two columns from a csv file (can do)
+
+
+    Open and Read a CSV file:
+        import pandas as pd
+        df = pd.read_csv("{}{}".format(PATH, symbol)
+        print df
+
+    Select Rows in a csv file (splicing):
+        import pandas as pd
+        df = pd.read_csv("{}{}".format(PATH, symbol)
+        print df[:7]
+
+    Get Max Close from CSV file:
+        import pandas as pd
+        df = pd.read_csv("{}{}".format(PATH, symbol)
+        get_max = df["Close"].max()
+        print get_max
+
+    Plot Columns from CSV file:
+        import pandas as pd
+        import matplotlib.pyplot as plt
+        df = pd.read_csv("{}{}".format(PATH, symbol)
+        symbollist = ["High", "Close", "Adj Close"]
+        df[symbollist].plot()
+        plt.show()
+
+This lesson I learned myself:
+    - how to parse all the files in a directory
+    - merge two or more dictionaries with reduce
+
+    Parse files from directory:
+        from os import listdir
+        from os.path import isfile, join
+        return [f for f in listdir(PATH) if isfile(join(PATH, f))]
+
+    Dictionary Merge:
+    d1, d2 = {"a": "aa"}, {"b": "bb"}
+    return reduce(lambda x,y: dict(x, **y), (d1, d2))
+
+
+
+This lesson I want to learn:
+    - how to parse only the file names in a directory
